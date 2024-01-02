@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <title>Personal Expense Manager | Abhinav Kaushik</title>
+    <!-- Styles -->
+    <style>
+        html,
+        body {
+            
+            background-color: #CEE6F3;
+            color: #7A316F;
+            font-family: Open Sans, sans-serif;
+            /*font-family: 'Raleway', sans-serif;*/
+            font-weight: 300;
+            border-color: #000000;
+            height: 100vh;
+            margin: 0;
+            overflow: auto;
+        }
+        a {
+            text-decoration: none;
+        }
+        .content {
+            margin: 0;
+            width: 100%;
+            position: relative;
+            top: 15vh;
+            /*border: 2px solid red;*/
+            /*text-align: center;*/
+        }
+        .title {
+            font-size: 2em;
+        }
+        .header {
+            font-size: 10pt;
+            z-index: 1;
+            background: #CEE6F3;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            /*font-size: 1.25rem;*/
+            color: #FFD2D7;
+            box-shadow: 0 1px 20px 0;
+        }
+        ul {
+            margin-bottom: 0;
+        }
+        .left {
+            width: 20%;
+            float: left;
+            margin-top: 0;
+        }
+        .right {
+            float: right;
+            padding-right: 5vw;
+            margin-top: 0;
+        }
+        .tabb li {
+            float: right;
+            list-style-type: none;
+            padding: 20px;
+        }
+        .tabb li p {
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+        .btnB {
+            background: #75C2F6;
+            color: white;
+            /*width: 7.75rem;*/
+            box-shadow: 8px 10px 20px 0 #2e3d4926;
+            text-transform: capitalize;
+            border-radius: 5px;
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #btnB {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+        .btnB:hover {
+            box-shadow: 2px 4px 8px 0 #2e3d4933;
+        }
+        .total {
+            width: 100%;
+            margin: auto;
+            float: left;
+            padding-top: 5vh;
+            padding-bottom: 5vh;
+            background: #fafbfc
+        }
+        .six {
+            width: 100%;
+            float: left;
+            padding-top: 5vh;
+            padding-bottom: 5vh;
+            background: #fafbfc
+        }
+        .lapi {
+            display: none;
+        }
+        .mobi {
+            display: block;
+        }
+        .hamburger {
+            display: block;
+        }
+        
+        @media(min-width: 62em) {
+            .lapi {
+                display: block;
+            }
+            .mobi {
+                display: none;
+            }
+            .six {
+                width: 50%;
+                float: left;
+                padding-top: 5vh;
+                padding-bottom: 5vh;
+                background: #ffffff
+            }
+        }
+        
+        #piechart {
+            box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+            background: #CEE6F3;
+            margin: 3vh;
+            padding: 40px;
+            text-align: center;
+            padding-top: 0;
+            border-radius: .375rem;
+        }
+        #piechart:hover{
+          cursor: pointer;
+          box-shadow: 2px 4px 8px 0 #2e3d4933;
+        }
+
+        .boxx{
+          color: #000000;margin: 3vh;padding: 40px;background: #ffffff;
+          box-shadow: 5px 5px 25px 0 #2e3d4933;
+          border-radius: .375rem;
+          text-align: center;
+        }
+        .boxx:hover{
+          cursor: pointer;
+          box-shadow: 2px 4px 8px 0 #2e3d4933;
+        }
+        input {
+            margin-bottom: 20px;
+            padding: 8px;
+            border: 1px solid #EEEDED;
+            border-radius: 2px;
+            font-size: .9em;
+        }
+        
+        select {
+            margin-bottom: 20px;
+            padding: 8px;
+            border: 1px solid #EEEDED;
+            border-radius: 2px;
+            font-size: .9em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <ul class="left tabb">
+            <li style="float: left;padding-left: 0;">
+
+                <b style="margin: 0;
+    padding: 10px;
+    font-style: bold;
+    text-align: center;
+    cursor: pointer; 
+    font-size: 20px;
+    padding-right: 10px;
+    padding-left: 10px;" class="lapi"> <a href="index.php" style="text-decoration: none;color: #525c65">
+                Expense Manager
+               </a></b>
+                <b class="mobi" style="
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    padding-right: 5px;
+    padding-left: -15px;"><a href="/" style="text-decoration: none;
+    color: #525c65;">Manager</a></b>
+
+            </li>
+        </ul>
+        <ul class="right tabb">
+
+            <li>
+                <a href="report.php" style="text-decoration: none;color: #525c65">
+                    <p class="btnB" id="btnB">My Reports</p>
+                </a>
+            </li>
+           
+        </ul>
+    </div>
+    <div class="content">
+
+        <div class="total">
+            <div class="six">
+                <div class="boxx">
+
+                    <div style="width: 100%;margin: auto;">
+                        <div>
+                            <div class="">
+                                <div class="box-header" style="background-color: #75C2F6; margin-top: 0; border-radius: 5px 5px 0 0;">
+                                    <h2 style="text-transform: uppercase;
+                                                color: white;
+                                                font-weight: 400;
+                                                letter-spacing: 1px;
+                                                font-size: 1.4em;
+                                                 line-height: 2.8em;">Add new Expenses</h2>
+                                </div>
+                                <p style="text-align: left;">Keep up to dated with your expenses by adding each in its respective catogaries and get weekly and monthly reports about your expenses.</p>
+
+                                <form id="form-work" class="" name="form-work" action="success.php" method="POST" style="text-align: left;">
+                                    
+
+                                    <label for="catogery" style="padding-right: 20px;">Select Expense Catogery</label>
+
+                                    <select type="text" id="type" name="type" required="true">
+                                        <option value="">SELECT</option>
+                                        <option value="Grocery">Grocery</option>
+                                        <option value="Entertainment">Entertainment,</option>
+                                        <option value="Vehicle">Vehicle</option>
+                                        <option value="Food">Food</option>
+                                        <option value="Miscellaneous">miscellaneous</option>
+                                    </select>
+                                    <br/>
+                                    <label for="expense" style="padding-right: 20px;">Add your Expenses</label>
+                                    <input type="number" id="expense" name="expense" required placeholder="How many did you spent">
+
+                                     <br/>
+                                    <label for="comment" style="padding-right: 20px;">Comment about expense</label>
+                                    <input type="text" id="comment" name="comment" required placeholder="just to remember">
+                                    <br/>
+                                    <button type="submit" class="btn btnB" style="padding-right: 20px;
+    padding-left: 20px;    box-shadow: 8px 10px 20px 0 #2e3d4926;border: none;background-color: #75C2F6;font-size: 105%;">Update</button>
+                                    <br/>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="six">
+                <div id="piechart"></div>
+            </div>
+        </div>
+
+
+<!-- Of that day -->
+
+    </div>
+  </div>
+</div>
+  
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+        // Load google charts
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Draw the chart and set the chart values
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Expenses', 'Rs per Day'],
+                ['Grocery,', 50],
+                ['Entertainment,', 80],
+                ['Vehicle,', 42],
+                ['Food,', 65],
+                ['Miscellaneous', 23]
+            ]);
+
+            // Optional; add a title and set the width and height of the chart
+            var options = {
+                'title': 'Today\'s Expenses by Category',
+                'width': 550,
+                'height': 400
+            };
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+    </script>
+
+</body>
+</html>
